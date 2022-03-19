@@ -85,7 +85,7 @@
                     <connections>
                         <outlet property="loginTextField" destination="8ub-9o-pR2" id="Tl6-tC-hZE"/>
                         <outlet property="passwordTextField" destination="QKx-Yb-GIb" id="g0W-86-sYd"/>
-                        <segue destination="xz5-VG-2qd" kind="show" identifier="welcomeVC" id="W3T-Fa-Jvb"/>
+                        <segue destination="xz5-VG-2qd" kind="presentation" identifier="welcomeVC" id="crX-Oa-0Gm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
