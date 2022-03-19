@@ -41,7 +41,7 @@
                                             <fontDescription key="titleFontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <segue destination="xz5-VG-2qd" kind="show" id="chx-uy-5mO"/>
+                                            <action selector="signInButtonPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="c7y-Qv-5OT"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -85,6 +85,7 @@
                     <connections>
                         <outlet property="loginTextField" destination="8ub-9o-pR2" id="Tl6-tC-hZE"/>
                         <outlet property="passwordTextField" destination="QKx-Yb-GIb" id="g0W-86-sYd"/>
+                        <segue destination="xz5-VG-2qd" kind="show" identifier="welcomeVC" id="W3T-Fa-Jvb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -94,7 +95,7 @@
         <!--Welcome View Controller-->
         <scene sceneID="Kdo-lB-SiB">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="xz5-VG-2qd" customClass="WelcomeViewController" customModule="LoginApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="aaa" modalPresentationStyle="fullScreen" id="xz5-VG-2qd" customClass="WelcomeViewController" customModule="LoginApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="9B2-v5-xHJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -151,7 +152,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5u8-iF-Cqc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="iSa-lo-F57" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="711.59420289855075" y="114.50892857142857"/>
+            <point key="canvasLocation" x="636" y="115"/>
         </scene>
     </scenes>
     <resources>

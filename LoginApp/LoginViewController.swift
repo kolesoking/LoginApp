@@ -12,26 +12,19 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loginTextField.delegate = self
         passwordTextField.delegate = self
         
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if loginTextField.text == "User" && passwordTextField.text == "1234" {
-            guard let welcomeVC = segue.destination as? WelcomeViewController else { return }
-            welcomeVC.welcomeL = loginTextField.text
-        } else {
-            showAlert(
-                with: "invalid login or password",
-                and: "Please, enter correct login and password"
-            )
+        guard let welcomeVC = segue.destination as? WelcomeViewController else { return }
+        welcomeVC.welcomeL = loginTextField.text
         }
-    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         if let _ = touches.first {
@@ -43,6 +36,18 @@ class LoginViewController: UIViewController {
     @IBAction func unwind(for segue: UIStoryboardSegue) {
         loginTextField.text = nil
         passwordTextField.text = nil
+    }
+    
+
+    @IBAction func signInButtonPressed() {
+        if loginTextField.text == "User" && passwordTextField.text == "1234" {
+            performSegue(withIdentifier: "welcomeVC", sender: nil)
+        } else {
+            showAlert(
+                with: "invalid login or password",
+                and: "Please, enter correct login and password"
+            )
+        }
     }
     
     //MARK: - Show Alert
@@ -75,8 +80,13 @@ extension LoginViewController {
 extension LoginViewController: UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        passwordTextField.becomeFirstResponder()
-        textField.resignFirstResponder()
+        
+        if textField == loginTextField {
+            passwordTextField.becomeFirstResponder()
+        } else {
+            signInButtonPressed()
+            }
+        
         return true
     }
 }

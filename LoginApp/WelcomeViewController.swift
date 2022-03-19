@@ -18,6 +18,13 @@ class WelcomeViewController: UIViewController {
 
         welcomeLabel.text = "Welcome, \(welcomeL ?? "None")"
         
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = view.bounds
+        gradientLayer.colors = [
+            UIColor.systemPink.cgColor,
+            UIColor.systemBlue.cgColor
+        ]
+        self.view.layer.insertSublayer(gradientLayer, at: 0)
     }
     
     @IBAction func signOutAction() {
