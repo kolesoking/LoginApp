@@ -12,6 +12,8 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var loginTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    let user = User.getUser()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -22,15 +24,31 @@ class LoginViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let welcomeVC = segue.destination as? WelcomeViewController else { return }
-        welcomeVC.welcomeL = loginTextField.text
+        let tabBarController = segue.destination as! UITabBarController
+        let viewControllers = tabBarController.viewControllers!
+        for viewController in viewControllers {
+            if let welcomeVC = viewController as? WelcomeViewController {
+                welcomeVC.welcomeName = user.infoUser.name
+                welcomeVC.welcomeSurname = user.infoUser.surname
+            } else if let navigationVC = viewController as? UINavigationController {
+                if let aboutUserVC = navigationVC.topViewController as? AboutMeViewController {
+                    aboutUserVC.nameUser = user.infoUser.name
+                    aboutUserVC.surnameUser = user.infoUser.surname
+                    aboutUserVC.ageUser = String(user.infoUser.age)
+                    aboutUserVC.photoUser = user.infoUser.photo
+                    aboutUserVC.aboutUser = user.infoUser.aboutMe
+                    
+                } else {
+                    let moreInfoVC = navigationVC.topViewController as! MoreInfoViewController
+                    moreInfoVC.interests = user.infoUser.interests
+                }
+            }
         }
+    }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if let _ = touches.first {
-            view.endEditing(true)
-        }
-        super .touchesBegan(touches, with: event)
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
     }
     
     @IBAction func unwind(for segue: UIStoryboardSegue) {
@@ -40,7 +58,7 @@ class LoginViewController: UIViewController {
     
 
     @IBAction func signInButtonPressed() {
-        if loginTextField.text == "User" && passwordTextField.text == "1234" {
+        if loginTextField.text == user.login && passwordTextField.text == user.password {
             performSegue(withIdentifier: "welcomeVC", sender: nil)
         } else {
             showAlert(
@@ -52,11 +70,11 @@ class LoginViewController: UIViewController {
     
     //MARK: - Show Alert
     @IBAction func showNameAlert(_ sender: Any) {
-        showAlert(with: "Oops!", and: "your name is User \u{1F609}")
+        showAlert(with: "Oops!", and: "your name is \(user.login) \u{1F609}")
     }
     
     @IBAction func showAlertPassword(_ sender: Any) {
-        showAlert(with: "Oops!", and: "your password is 1234 \u{1F609}")
+        showAlert(with: "Oops!", and: "your password is \(user.password) \u{1F609}")
     }
     
 }

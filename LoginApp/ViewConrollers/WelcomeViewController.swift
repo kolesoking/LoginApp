@@ -11,12 +11,13 @@ class WelcomeViewController: UIViewController {
     
     @IBOutlet weak var welcomeLabel: UILabel!
     
-    var welcomeL: String!
+    var welcomeName: String!
+    var welcomeSurname: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        welcomeLabel.text = "Welcome, \(welcomeL ?? "None")"
+        welcomeLabel.text = "Welcome, \(welcomeName ?? "None") \(welcomeSurname  ?? "None")"
         
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = view.bounds
@@ -24,11 +25,8 @@ class WelcomeViewController: UIViewController {
             UIColor.white.cgColor,
             UIColor.systemIndigo.cgColor
         ]
-        self.view.layer.insertSublayer(gradientLayer, at: 0)
+        view.layer.insertSublayer(gradientLayer, at: 0)
     }
     
-    @IBAction func signOutAction() {
-        dismiss(animated: true)
-    }
     
 }
