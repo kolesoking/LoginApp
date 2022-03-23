@@ -234,7 +234,7 @@
                         <barButtonItem key="backBarButtonItem" title="Back" id="rbe-md-mM4"/>
                         <barButtonItem key="rightBarButtonItem" title="More info" id="F08-YP-rfJ">
                             <connections>
-                                <segue destination="AGN-fo-zBF" kind="show" id="iee-H8-7Md"/>
+                                <segue destination="AGN-fo-zBF" kind="show" identifier="moreInfoVC" id="iee-H8-7Md"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

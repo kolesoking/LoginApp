@@ -20,6 +20,7 @@ class AboutMeViewController: UIViewController {
     var ageUser: String!
     var photoUser: String!
     var aboutUser: String!
+    var interestsUser: String!
     
     
     
@@ -35,9 +36,14 @@ class AboutMeViewController: UIViewController {
         userPhoto.image = UIImage(named: photoUser ?? "None")
         
         userPhoto.layer.cornerRadius = userPhoto.frame.width / 2
-        
-        
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "moreInfoVC" else { return }
+        guard let moreInfoVC = segue.destination as? MoreInfoViewController else { return}
+        moreInfoVC.interests = interestsUser
+    }
+    
 }
     
 

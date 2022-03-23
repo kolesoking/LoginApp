@@ -31,17 +31,13 @@ class LoginViewController: UIViewController {
                 welcomeVC.welcomeName = user.infoUser.name
                 welcomeVC.welcomeSurname = user.infoUser.surname
             } else if let navigationVC = viewController as? UINavigationController {
-                if let aboutUserVC = navigationVC.topViewController as? AboutMeViewController {
-                    aboutUserVC.nameUser = user.infoUser.name
-                    aboutUserVC.surnameUser = user.infoUser.surname
-                    aboutUserVC.ageUser = String(user.infoUser.age)
-                    aboutUserVC.photoUser = user.infoUser.photo
-                    aboutUserVC.aboutUser = user.infoUser.aboutMe
-                    
-                } else {
-                    let moreInfoVC = navigationVC.topViewController as! MoreInfoViewController
-                    moreInfoVC.interests = user.infoUser.interests
-                }
+                let aboutUserVC = navigationVC.topViewController as? AboutMeViewController
+                aboutUserVC!.nameUser = user.infoUser.name
+                aboutUserVC!.surnameUser = user.infoUser.surname
+                aboutUserVC!.ageUser = String(user.infoUser.age)
+                aboutUserVC!.photoUser = user.infoUser.photo
+                aboutUserVC!.aboutUser = user.infoUser.aboutMe
+                aboutUserVC!.interestsUser = user.infoUser.interests
             }
         }
     }
