@@ -12,12 +12,12 @@ class MoreInfoViewController: UIViewController {
 
     @IBOutlet weak var personalInterests: UILabel!
     
-    var interests: String!
+    var user: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        personalInterests.text = interests ?? "None"
+        personalInterests.text = user.infoUser.interests
 
     }
     

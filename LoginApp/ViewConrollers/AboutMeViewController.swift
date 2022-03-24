@@ -15,25 +15,17 @@ class AboutMeViewController: UIViewController {
     @IBOutlet weak var aboutMeText: UILabel!
     @IBOutlet weak var userPhoto: UIImageView!
     
-    var nameUser: String!
-    var surnameUser: String!
-    var ageUser: String!
-    var photoUser: String!
-    var aboutUser: String!
-    var interestsUser: String!
-    
-    
-    
+    var user: User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nameAndSurname.text = "\(nameUser ?? "None") \(surnameUser ?? "None")"
-        age.text = "\(ageUser ?? "None") года"
+        nameAndSurname.text = "\(user.infoUser.fullName)"
+        age.text = "\(user.infoUser.age) года"
         
-        aboutMeText.text = aboutUser ?? "None"
+        aboutMeText.text = user.infoUser.aboutMe
         
-        userPhoto.image = UIImage(named: photoUser ?? "None")
+        userPhoto.image = UIImage(named: user.infoUser.photo)
         
         userPhoto.layer.cornerRadius = userPhoto.frame.width / 2
     }
@@ -41,7 +33,7 @@ class AboutMeViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard segue.identifier == "moreInfoVC" else { return }
         guard let moreInfoVC = segue.destination as? MoreInfoViewController else { return}
-        moreInfoVC.interests = interestsUser
+        moreInfoVC.user = user
     }
     
 }
